@@ -4,14 +4,16 @@
       <h1>A simple TODO List.</h1>
     </header>
 
+    <p>Anyone there?</p>
+    
     <ul>
       {{#each tasks}}
-        {{> task}}
+        {{> atask}}
       {{/each}}
     </ul>
   </div>
 </body>
 
-<template name="task">
-  <li>Ths is Task {{text}} with message {{mess}}</li>
+<template name="atask">
+  <li>This is a task {{text}} with message "{{mess}}"</li>
 </template>
