@@ -12,12 +12,8 @@
     
     <ul>
       {{#each tasks}}
-        {{> atask}}
+        {{> task}}
       {{/each}}
     </ul>
   </div>
 </body>
-
-<template name="atask">
-  <li>This is a task {{text}} with message "{{mess}}"</li>
-</template>
