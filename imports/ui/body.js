@@ -7,17 +7,18 @@ import './task.js';
 import './body.html';
 
 Template.body.onCreated(function bodyOnCreated() {
-    this.state = new ReactiveDict();
+    this.mystate = new ReactiveDict();
 });
 
 Template.body.helpers({
     tasks() {
 	const instance = Template.instance();
-	if (instance.state.get('hideCompleted')) {
-	    return Tasks.find({ checked: { $ne: true } }, { sort : { createdAt: -1 } });
-	} else {
-	    return Tasks.find({}, { sort : { createdAt: -1 } });
+	var filter = new Object();
+	
+	if (instance.mystate.get('hideCompleted')) {
+	    filter.checked = { $ne: true };
 	}
+	return Tasks.find(filter, { sort : { createdAt: -1 } });
     },
     incompleteCount() {
 	return Tasks.find({ checked: { $ne: true } }).count();
@@ -35,14 +36,12 @@ Template.body.events({
 	    text,
 	    createdAt: new Date(),
 	    mess: "Hard coded message",
+	    checked: false,
 	});
-
 	
-	console.log(event);
-
 	target.text.value = '';
     },
     'change .hide-completed input' (event, instance) {
-	instance.state.set('hideCompleted', event.target.checked);
+	instance.mystate.set('hideCompleted', event.target.checked);
     },
 });

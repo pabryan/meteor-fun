@@ -97,7 +97,11 @@ li.checked {
 li.checked .text {
   text-decoration: line-through;
 }
- 
+
+li.checked .mess {
+  font-weight: bold;
+}
+
 li.private {
   background: #eee;
   border-color: #ddd;
